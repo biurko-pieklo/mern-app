@@ -1,41 +1,22 @@
 const express = require('express');
-const Post = require('../models/Post');
+const {
+    getPosts,
+    getPost,
+    newPost,
+    deletePost,
+    updatePost,
+} = require('../controllers/Post');
 
 const router = express.Router();
 
-router.get('/', (request, response) => {
-    response.json({
-        message: "GET all posts",
-    });
-});
+router.get('/', getPosts);
 
-router.get('/:id', (request, response) => {
-    response.json({
-        message: "GET single post",
-    });
-});
+router.get('/:id', getPost);
 
-router.post('/', async (request, response) => {
-    const {content} = request.body;
+router.post('/', newPost);
 
-    try {
-        const post = await Post.create({content});
-        response.status(200).json(post);
-    } catch (error) {
-        response.status(200).json({error: error.message});
-    }
-});
+router.delete('/:id', deletePost);
 
-router.delete('/:id', (request, response) => {
-    response.json({
-        message: "DELETE a post",
-    });
-});
-
-router.patch('/:id', (request, response) => {
-    response.json({
-        message: "UPDATE a post",
-    });
-});
+router.patch('/:id', updatePost);
 
 module.exports = router;
