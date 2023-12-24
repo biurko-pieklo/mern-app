@@ -31,10 +31,10 @@ const getPost = async (request, response) => {
 }
 
 const newPost = async (request, response) => {
-    const {content} = request.body;
+    const {content, userId} = request.body;
 
     try {
-        const post = await Post.create({content});
+        const post = await Post.create({content, userId});
         response.status(200).json(post);
     } catch (error) {
         response.status(200).json({
