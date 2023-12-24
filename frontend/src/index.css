@@ -2,8 +2,10 @@
   --error: #ca2d2d;
   --primary: #e0dfd5;
   --link: #8add3d;
+
   --main-bg: #131314;
   --secondary-bg: #1e1e29;
+  --tertiary-bg: #1c1c20;
 }
 
 * {
@@ -19,6 +21,8 @@ html, body {
   margin: 0;
 
   background-color: var(--main-bg);
+
+  font-family: 'Courier New', Courier, monospace;
 }
 
 header {
@@ -32,8 +36,38 @@ header {
 
 .container,
 .pages {
-  max-width: 1400px;
+  max-width: min(1400px, 85vw);
   width: 100%;
 
   margin: auto;
+}
+
+.pages {
+  padding-top: 50px;
+}
+
+.posts {
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post {
+  padding: 20px;
+
+  background-color: var(--tertiary-bg);
+
+  border-radius: 20px;
+}
+
+.post__author h4 {
+  margin-top: 0;
+
+  font-size: 1.4rem;
+}
+
+.post__content :last-child {
+  margin-bottom: 0;
 }
