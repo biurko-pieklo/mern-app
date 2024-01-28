@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Userdesc from "./Userdesc";
+import PostActions from "./PostActions";
 
 const Post = ({ post }) => {
     const [user, setUser] = useState(null);
@@ -22,7 +23,10 @@ const Post = ({ post }) => {
 
     return (
         <div className = "post">
-            {user && <Userdesc key = {post.userId} user = {user} />}
+            <div className = "post__header">
+                {user && <Userdesc key = {post.userId} user = {user} />}
+                <PostActions post = {post}/>
+            </div>
             <div className = "post__content">
                 <p>{post.content}</p>
             </div>
