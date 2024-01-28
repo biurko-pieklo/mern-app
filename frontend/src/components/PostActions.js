@@ -20,7 +20,7 @@ const PostActions = ({ post }) => {
 
     return (
         <div className = "post__actions">
-            <button onClick={handleDelete}>delete</button>
+            <button className = "material-symbols-rounded" onClick={handleDelete}>delete</button>
         </div>
     );
 }

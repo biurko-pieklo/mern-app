@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { usePostsContext } from '../hooks/usePostsContext'; 
 
 import Post from "../components/Post";
@@ -21,7 +21,7 @@ const Home = () => {
         }
 
         fetchPosts();
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className = "home">

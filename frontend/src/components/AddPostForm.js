@@ -4,7 +4,7 @@ import { usePostsContext } from '../hooks/usePostsContext';
 const AddPostForm = () => {
     const { dispatch } = usePostsContext();
     const [content, setContent] = useState('');
-    const [userId, setUserId] = useState('65889567ae87b18866fecf05');
+    const [userId] = useState('65889567ae87b18866fecf05');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 

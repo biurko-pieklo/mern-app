@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 import Userdesc from "./Userdesc";
 import PostActions from "./PostActions";
@@ -17,9 +18,11 @@ const Post = ({ post }) => {
         }
 
         fetchUser();
-    }, []);
+    }, [post.userId]);
 
-    const createdDate = new Date(post.createdAt);
+    const createdDate = formatDistanceToNow(new Date(post.createdAt), {
+        addSuffix: true,
+    });
 
     return (
         <div className = "post">
@@ -31,7 +34,7 @@ const Post = ({ post }) => {
                 <p>{post.content}</p>
             </div>
             <div className = "post__footer">
-                <p>{createdDate.toUTCString()}</p>
+                <p>{createdDate}</p>
             </div>
         </div>
     );
