@@ -91,12 +91,21 @@ header {
 }
 
 .post__author h4 {
-  margin-top: 0;
+  margin: 0 0 15px;
 
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
-.post__content :last-child {
+.post__content {
+  font-size: 18px;
+}
+
+.post__footer {
+  font-size: 14px;
+}
+
+.post__content :last-child,
+.post__footer :last-child {
   margin-bottom: 0;
 }
 

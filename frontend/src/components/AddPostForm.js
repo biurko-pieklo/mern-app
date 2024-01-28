@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { usePostsContext } from '../hooks/usePostsContext';
 
 const AddPostForm = () => {
+    const { dispatch } = usePostsContext();
     const [content, setContent] = useState('');
     const [userId, setUserId] = useState('65889567ae87b18866fecf05');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -29,6 +30,11 @@ const AddPostForm = () => {
             setError(null);
             setSuccess('Post added!');
 
+            dispatch({
+                type: 'CREATE_POST',
+                payload: json
+            });
+
             setTimeout(() => {
                 setSuccess(null);
             }, 1500);
@@ -41,12 +47,12 @@ const AddPostForm = () => {
             <textarea
                 placeholder = "Post content..."
                 onChange = {(e) => setContent(e.target.value)}
-                value = {content}
+                value = { content }
             ></textarea>
 
             <button type = "submit">Add post</button>
-            {error && <div className = "error">{error}</div>}
-            {success && <div className = "success">{success}</div>}
+            { error && <div className = "error">{error}</div> }
+            { success && <div className = "success">{success}</div> }
         </form>
     );
 }
