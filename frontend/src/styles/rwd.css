@@ -1,0 +1,9 @@
+@media (max-width: 1024px) {
+    .home {
+        flex-direction: column-reverse;
+    }
+
+    .sidebar {
+      padding: 0 0 50px;
+    }
+}

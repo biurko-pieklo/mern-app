@@ -1,0 +1,139 @@
+:root {
+  --error: #ca2d2d;
+  --primary: #e0dfd5;
+  --link: #8add3d;
+
+  --main-bg: #131314;
+  --secondary-bg: #1e1e29;
+  --tertiary-bg: #1c1c20;
+
+  --cw: #fff;
+  --cb: #000;
+
+  --radius-1: 20px;
+}
+
+* {
+  color: var(--primary);
+  box-sizing: border-box;
+
+  transition: all .3s;
+}
+
+a, a * {
+  color: var(--link);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  scale: 1.05;
+}
+
+html, body {
+  margin: 0;
+
+  background-color: var(--main-bg);
+
+  font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+  position: sticky;
+  top: 0;
+
+  display: flex;
+
+  background-color: var(--secondary-bg);
+}
+
+.container,
+.pages {
+  max-width: min(1400px, 85vw);
+  width: 100%;
+
+  margin: auto;
+}
+
+.pages {
+  padding-top: 50px;
+}
+
+.home {
+  display: flex;
+}
+
+.posts {
+  flex: 1 1 60%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar {
+  flex: 1 1 40%;
+
+  padding-left: 50px;
+}
+
+.post {
+  padding: 20px;
+
+  background-color: var(--tertiary-bg);
+
+  border-radius: var(--radius-1);
+}
+
+.post__author h4 {
+  margin-top: 0;
+
+  font-size: 1.4rem;
+}
+
+.post__content :last-child {
+  margin-bottom: 0;
+}
+
+form h4 {
+  margin-top: 0;
+}
+
+form button {
+  background-color: var(--main-bg);
+  color: var(--primary);
+
+  outline: none;
+
+  border: 2px solid var(--primary);
+  border-radius: calc(var(--radius-1));
+
+  padding: 10px 15px;
+
+  font-size: 16px;
+  font-family: inherit;
+}
+
+form.create {
+  padding: 20px;
+  background-color: var(--secondary-bg);
+}
+
+form.create textarea {
+  width: 100%;
+  height: 150px;
+
+  padding: 15px;
+
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-1);
+
+  background-color: var(--tertiary-bg);
+  color: var(--primary);
+}
+
+form.create textarea::placeholder {
+  color: inherit;
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Post from "../components/Post";
+import AddPostForm from '../components/AddPostForm';
 
 const Home = () => {
     const [posts, setPosts] = useState(null);
@@ -24,6 +25,9 @@ const Home = () => {
                 {posts && posts.map((post) => (
                     <Post key={post._id} post={post} />
                 ))}
+            </div>
+            <div className = 'sidebar'>
+                <AddPostForm />
             </div>
         </div>
     );
