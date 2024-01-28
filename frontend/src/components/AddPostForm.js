@@ -4,6 +4,7 @@ const AddPostForm = () => {
     const [content, setContent] = useState('');
     const [userId, setUserId] = useState('65889567ae87b18866fecf05');
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
 
     const handleSubmit = async(e) => {
@@ -26,6 +27,11 @@ const AddPostForm = () => {
         } else {
             setContent('');
             setError(null);
+            setSuccess('Post added!');
+
+            setTimeout(() => {
+                setSuccess(null);
+            }, 1500);
         }
     }
 
@@ -40,6 +46,7 @@ const AddPostForm = () => {
 
             <button type = "submit">Add post</button>
             {error && <div className = "error">{error}</div>}
+            {success && <div className = "success">{success}</div>}
         </form>
     );
 }

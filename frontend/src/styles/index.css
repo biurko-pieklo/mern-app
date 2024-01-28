@@ -1,6 +1,9 @@
 :root {
   --error: #ca2d2d;
+  --success: #11ff11;
+
   --primary: #e0dfd5;
+  --secondary: #233022;
   --link: #8add3d;
 
   --main-bg: #131314;
@@ -114,6 +117,22 @@ form button {
 
   font-size: 16px;
   font-family: inherit;
+}
+
+form .error,
+form .success {
+  background-color: var(--error);
+  padding: 5px;
+  margin-top: 10px;
+}
+
+form .error {
+  background-color: var(--error);
+}
+
+form .success {
+  background-color: var(--success);
+  color: var(--secondary);
 }
 
 form.create {

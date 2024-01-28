@@ -33,6 +33,18 @@ const getPost = async (request, response) => {
 const newPost = async (request, response) => {
     const {content, userId} = request.body;
 
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        return response.status(404).json({
+            error: 'User of given id does not exist',
+        });
+    }
+
+    if (!content) {
+        return response.status(400).json({
+            error: 'Post content cannot be empty',
+        });
+    }
+
     try {
         const post = await Post.create({content, userId});
         response.status(200).json(post);
@@ -66,11 +78,17 @@ const deletePost = async (request, response) => {
 }
 
 const updatePost = async (request, response) => {
-    const {id} = request.params;
+    const {id, content} = request.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return response.status(404).json({
             error: 'Post of given id does not exist',
+        });
+    }
+
+    if (!content) {
+        return response.status(400).json({
+            error: 'Post content cannot be empty',
         });
     }
 

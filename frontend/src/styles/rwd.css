@@ -7,3 +7,10 @@
       padding: 0 0 50px;
     }
 }
+
+@media (min-width: 1023px) {
+  .sidebar form.create {
+    position: sticky;
+    top: 100px;
+  }
+}
