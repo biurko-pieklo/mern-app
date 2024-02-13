@@ -1,6 +1,11 @@
 const { request, response } = require('express');
 const User = require('../models/User');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '1d'});
+}
 
 const getUsers = async (request, response) => {
     const users = await User.find({}).sort({
@@ -89,10 +94,44 @@ const updateUser = async (request, response) => {
     response.status(200).json(user);
 }
 
+const loginUser = async (request, response) => {
+    const {username, password} = request.body;
+
+    try {
+        const user = await User.login(username, password);
+
+        const token = createToken(user._id);
+
+        response.status(200).json({username, token});
+    } catch (error) {
+        response.status(400).json({
+            error: error.message
+        });
+    }
+}
+
+const registerUser = async (request, response) => {
+    const {username, password} = request.body;
+
+    try {
+        const user = await User.register(username, password);
+
+        const token = createToken(user._id);
+
+        response.status(200).json({username, token});
+    } catch (error) {
+        response.status(400).json({
+            error: error.message
+        });
+    }
+}
+
 module.exports = {
     getUsers,
     getUser,
     newUser,
     deleteUser,
     updateUser,
+    loginUser,
+    registerUser
 }

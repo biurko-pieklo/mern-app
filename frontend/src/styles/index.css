@@ -25,6 +25,7 @@
 
 a, a * {
   color: var(--link);
+  text-decoration: none;
 }
 
 button {
@@ -63,6 +64,17 @@ header {
   display: flex;
 
   background-color: var(--secondary-bg);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
 }
 
 .container,
@@ -168,4 +180,30 @@ form.create textarea {
 
 form.create textarea::placeholder {
   color: inherit;
+}
+
+form.login,
+form.register {
+  display: flex;
+  flex-direction: column;
+}
+
+form.login input,
+form.register input {
+  font-family:  'Courier New', Courier, monospace;
+  width: 100%;
+  max-width: 400px;
+
+  padding: 15px;
+  margin-bottom: 15px;
+
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-1);
+
+  background-color: var(--tertiary-bg);
+  color: var(--primary);
+}
+
+form button {
+  width: fit-content;
 }
