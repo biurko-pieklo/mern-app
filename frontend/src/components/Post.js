@@ -3,21 +3,23 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 import Userdesc from "./Userdesc";
 import PostActions from "./PostActions";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Post = ({ post }) => {
-    const [user, setUser] = useState(null);
+    const [author, setAuthor] = useState(null);
+    const { user } = useAuthContext();
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchAuthor = async () => {
             const response = await fetch('/api/users/' + post.userId);
             const json = await response.json();
 
             if (response.ok) {
-                setUser(json);
+                setAuthor(json);
             }
         }
 
-        fetchUser();
+        fetchAuthor();
     }, [post.userId]);
 
     const createdDate = formatDistanceToNow(new Date(post.createdAt), {
@@ -27,8 +29,8 @@ const Post = ({ post }) => {
     return (
         <div className = "post">
             <div className = "post__header">
-                {user && <Userdesc key = {post.userId} user = {user} />}
-                <PostActions post = {post}/>
+                {author && <Userdesc key = {post.userId} user = {author} />}
+                {user == author && <PostActions post = {post}/>}
             </div>
             <div className = "post__content">
                 <p>{post.content}</p>
