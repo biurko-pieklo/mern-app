@@ -35,6 +35,20 @@ const getUser = async (request, response) => {
     response.status(200).json(user);
 }
 
+const getIdByUsername = async (request, response) => {
+    const {username} = request.params;
+
+    const user = await User.findOne({username}).select('username')
+
+    if (!user) {
+        return response.status(404).json({
+            error: 'User of given username does not exist',
+        });
+    }
+
+    response.status(200).json(user._id);
+}
+
 const newUser = async (request, response) => {
     const {username, password, displayname} = request.body;
 
@@ -129,6 +143,7 @@ const registerUser = async (request, response) => {
 module.exports = {
     getUsers,
     getUser,
+    getIdByUsername,
     newUser,
     deleteUser,
     updateUser,

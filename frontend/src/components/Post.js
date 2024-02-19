@@ -30,7 +30,7 @@ const Post = ({ post }) => {
         <div className = "post">
             <div className = "post__header">
                 {author && <Userdesc key = {post.userId} user = {author} />}
-                {user == author && <PostActions post = {post}/>}
+                {author && user && <PostActions post = {post} author = {author} />}
             </div>
             <div className = "post__content">
                 <p>{post.content}</p>

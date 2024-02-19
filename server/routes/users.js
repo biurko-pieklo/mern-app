@@ -2,6 +2,7 @@ const express = require('express');
 const {
     getUsers,
     getUser,
+    getIdByUsername,
     newUser,
     deleteUser,
     updateUser,
@@ -14,6 +15,8 @@ const router = express.Router();
 router.get('/', getUsers);
 
 router.get('/:id', getUser);
+
+router.get('/getByUsername/:username', getIdByUsername);
 
 router.post('/', newUser);
 

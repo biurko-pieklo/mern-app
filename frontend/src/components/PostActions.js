@@ -1,11 +1,20 @@
+import { useAuthContext } from "../hooks/useAuthContext";
 import { usePostsContext } from "../hooks/usePostsContext";
 
-const PostActions = ({ post }) => {
+const PostActions = ({ post, author }) => {
     const { dispatch } = usePostsContext();
+    const { user } = useAuthContext();
 
     const handleDelete = async () => {
+        if (!user) {
+            return;
+        }
+
         const response = await fetch('/api/posts/' + post._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         });
 
         const json = await response.json();
@@ -20,7 +29,7 @@ const PostActions = ({ post }) => {
 
     return (
         <div className = "post__actions">
-            <button className = "material-symbols-rounded" onClick={handleDelete}>delete</button>
+            {author.username === user.username && <button className = "material-symbols-rounded" onClick={handleDelete}>delete</button>}
         </div>
     );
 }

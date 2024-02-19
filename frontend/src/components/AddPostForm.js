@@ -1,15 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePostsContext } from '../hooks/usePostsContext';
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const AddPostForm = () => {
     const { dispatch } = usePostsContext();
     const [content, setContent] = useState('');
-    const [userId] = useState('65889567ae87b18866fecf05');
+    const { user } = useAuthContext();
+    const [userId, setUserId] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
+    useEffect(() => {
+        if (!user) {
+            return;
+        }
+
+        const fetchUsetId = async () => {
+            const response = await fetch('/api/users/getByUsername/' + user.username);
+            const json = await response.json();
+
+            if (response.ok) {
+                setUserId(json);
+            }
+        }
+
+        fetchUsetId();
+    });
+
+
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        if (!user) {
+            setError('You must be logged in');
+            return ;
+        }
 
         const post = {content, userId};
 
@@ -17,7 +42,8 @@ const AddPostForm = () => {
             method: 'POST',
             body: JSON.stringify(post),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         });
 
