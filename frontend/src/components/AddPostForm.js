@@ -15,7 +15,7 @@ const AddPostForm = () => {
             return;
         }
 
-        const fetchUsetId = async () => {
+        const fetchUserId = async () => {
             const response = await fetch('/api/users/getByUsername/' + user.username);
             const json = await response.json();
 
@@ -24,7 +24,7 @@ const AddPostForm = () => {
             }
         }
 
-        fetchUsetId();
+        fetchUserId();
     });
 
 

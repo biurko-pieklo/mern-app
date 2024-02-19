@@ -9,7 +9,7 @@
 }
 
 @media (min-width: 1023px) {
-  .sidebar form.create {
+  .sidebar__content {
     position: sticky;
     top: 100px;
   }

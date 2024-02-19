@@ -3,6 +3,7 @@ import { usePostsContext } from '../hooks/usePostsContext';
 
 import Post from "../components/Post";
 import AddPostForm from '../components/AddPostForm';
+import ChuckNorrisJoke from '../components/ChuckNorrisJoke';
 
 const Home = () => {
     const {posts, dispatch} = usePostsContext();
@@ -31,7 +32,10 @@ const Home = () => {
                 ))}
             </div>
             <div className = 'sidebar'>
-                <AddPostForm />
+                <div className = 'sidebar__content'>
+                    <AddPostForm />
+                    <ChuckNorrisJoke />
+                </div>
             </div>
         </div>
     );

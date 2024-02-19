@@ -108,6 +108,16 @@ nav {
   padding-left: 50px;
 }
 
+.sidebar__content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  background-color: var(--secondary-bg);
+
+  padding: 20px;
+}
+
 .post {
   padding: 20px;
 
@@ -141,6 +151,7 @@ nav {
   margin-bottom: 0;
 }
 
+.sidebar__content h4,
 form h4 {
   margin-top: 0;
 }
@@ -159,11 +170,6 @@ form .error {
 form .success {
   background-color: var(--success);
   color: var(--secondary);
-}
-
-form.create {
-  padding: 20px;
-  background-color: var(--secondary-bg);
 }
 
 form.create textarea {
